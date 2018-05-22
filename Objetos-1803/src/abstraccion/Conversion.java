@@ -5,28 +5,40 @@
  */
 package abstraccion;
 
-/**
- *
- * @author T-101
- */
+
 public class Conversion {
-
-    float centigrados;
-    float farenheit;
-
-    public float getCentigrados() {
-        return centigrados;
+    private Grados grados;
+    private Longitudes longitudes;
+    
+    public float centigradosAFarenheit(){
+        //Este metodo tiene lógica
+        
+        float resultado= grados.getCentigrados()*1.8f+32;
+        return resultado;
     }
 
-    public void setCentigrados(float centigrados) {
-        this.centigrados = centigrados;
+    public Grados getGrados() {
+        return grados;
     }
 
-    public float getFarenheit() {
-        return farenheit;
+    public void setGrados(Grados grados) {
+        this.grados = grados;
+    }
+    
+    public float metrosAPies(){
+        //Este metodo tiene lógica
+        
+        float resultadop=longitudes.getMetros()*3.28f;
+        return resultadop;
+    }
+    public Longitudes getLongitudes() {
+        return longitudes;
     }
 
-    public void setFarenheit(float farenheit) {
-        this.farenheit = farenheit;
+    public void setLongitudes(Longitudes longitudes) {
+        this.longitudes = longitudes;
     }
+    
+    
+    
 }

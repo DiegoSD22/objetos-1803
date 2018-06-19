@@ -3,61 +3,26 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Genericos;
+package Funcional;
 
-import Genericos.GeneradorCuestionario;
-import Genericos.Opcion;
-import Genericos.Pregunta;
-import java.util.ArrayList;
-import javax.swing.ButtonGroup;
-import javax.swing.JButton;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JRadioButton;
 
 /**
  *
- * @author campitos
+ * @author T-101
  */
-public class VentanaCuestionario extends javax.swing.JFrame {
-JButton boton;
+public class VentanaFuncional extends javax.swing.JFrame {
+
     /**
-     * Creates new form VentanaCuestionario
+     * Creates new form VentanaFuncional
      */
-    public VentanaCuestionario() {
+    public VentanaFuncional() {
         initComponents();
-        
-          
-        GeneradorCuestionario generador=new GeneradorCuestionario();
-       
-        JLabel l1=new JLabel();
-        
-      //  ArrayList<JRadioButton> radios=new ArrayList<JRadioButton>();
-       
-       for(Pregunta p:generador.getCuestionario().getPreguntas()){
-           
-          // System.out.println(p.getTitulo());
-          l1.setText(p.getTitulo());
-          jPanel1.add(l1);
-          
-          ButtonGroup grupo=new ButtonGroup();
-           
-           for(Opcion o:p.getOpciones()){
-              // System.out.println(o.getTitulo()+" "+o.isCorrecta());
-              JRadioButton r=new JRadioButton();
-              r.setText(o.getTitulo());
-              grupo.add(r);
-              jPanel1.add(r);
-           }
-           
-           boton=new JButton("checar respuesta");
-           jPanel1.add(boton);
-       }
-       boton.addActionListener(evento->{
-           JOptionPane.showConfirmDialog(this, "Correcto!!");
-       });
-        
-        
+        //Vamos a manejar el evento del botón como antes...
+        botoncito.addActionListener(evento->{
+            //Aquí va el código del evento
+            JOptionPane.showConfirmDialog(this, "Listo");
+        });
     }
 
     /**
@@ -69,26 +34,40 @@ JButton boton;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel1 = new javax.swing.JPanel();
+        botoncito = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(136, 190, 191));
-        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
+        botoncito.setText("Botoncito");
+        botoncito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botoncitoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 537, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(136, 136, 136)
+                .addComponent(botoncito)
+                .addContainerGap(142, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
+                .addComponent(botoncito)
+                .addContainerGap(190, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void botoncitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoncitoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_botoncitoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -107,25 +86,25 @@ JButton boton;
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VentanaCuestionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaFuncional.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VentanaCuestionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaFuncional.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VentanaCuestionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaFuncional.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VentanaCuestionario.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VentanaFuncional.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VentanaCuestionario().setVisible(true);
+                new VentanaFuncional().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton botoncito;
     // End of variables declaration//GEN-END:variables
 }

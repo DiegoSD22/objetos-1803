@@ -9,14 +9,18 @@ package Serializar;
 public class Aplicacion {
     public static void main(String[] args) throws Exception{
         
-        //Pues a usar nuestro modelo
-        Cliente c=new Cliente();
-        c.setEdad(46);
-        c.setNombre("Diego Gerardo");
-        c.setSueldo(45000);
-        
-        PresistenciaUsuario.guardar(c);
-        System.out.println("Guardado con exito!!");
-    }
+  
+      for(Cliente c:PresistenciaUsuario.leer()){
+       
+       System.out.println("Vamos a checar el nombre"+c.getNombre());
+      }
+      
+       /*Cliente c=new Cliente();
+       c.setNombre("Diego");
+       c.setEdad(21);
+       PresistenciaUsuario.guardar(c);
+       */
+}
+
     
 }

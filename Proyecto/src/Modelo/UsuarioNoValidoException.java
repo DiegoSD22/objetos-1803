@@ -10,9 +10,9 @@ package Modelo;
  * @author T-101
  */
 public class UsuarioNoValidoException extends Exception{
-    try{
-    Usuario u1=new Usuario();
-    if(u1.getLogin())
-}
+    
+    public UsuarioNoValidoException () {
+        super("Usuario no valido");
+    }
     
 }

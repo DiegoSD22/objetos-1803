@@ -11,18 +11,8 @@ package Modelo;
  */
 public class ValidarUsuario {
 
-    public static void main(String[] args) {
-
-        try {
-            Usuario usu = new Usuario();
-            if (usu.getLogin().equals("Diego") && usu.getPassword().equals("16503979"){
-                System.out.println("Usuario correcto");
-            } else {
-                System.out.println("Usuario incorrecto");
-            }
-        } catch (Exception e) {
-            System.out.println("Error: "+e.getMessage());
+        public static void autenticar(Usuario u) throws UsuarioNoValidoException{
+                if(!(u.getLogin().equals("Diego") && u.getPassword().equals("1234"))) throw  new UsuarioNoValidoException();
         }
-
     }
-}
+

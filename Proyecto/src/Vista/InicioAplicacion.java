@@ -62,6 +62,11 @@ public class InicioAplicacion extends javax.swing.JFrame {
         });
 
         jButton2.setText("Iniciar Test");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -119,6 +124,15 @@ public class InicioAplicacion extends javax.swing.JFrame {
         AdministrarAplicacion adm= new AdministrarAplicacion();
         adm.setVisible(true);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        //Primero cerramos este JFrame
+        dispose();
+        //Le ordenamos al JFrame que se llama AdministrarAplicacion que se muestre
+        VentanaCuestionario cues= new VentanaCuestionario();
+        cues.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

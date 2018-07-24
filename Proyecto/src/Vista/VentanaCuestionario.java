@@ -5,11 +5,6 @@
  */
 package Vista;
 
-import Genericos.GeneradorCuestionario;
-import Genericos.Opcion;
-import Genericos.Opcion;
-import Genericos.Pregunta;
-import Genericos.Pregunta;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.ArrayList;
@@ -31,54 +26,26 @@ public class VentanaCuestionario extends javax.swing.JFrame {
         setAlwaysOnTop(true);
         initComponents();
         Thread t1 = new Thread(new Runnable() {
-            @Override
+
             public void run() {
-                try {
 
-                    while (true) {
-                        int seg = 50;
-                        if (seg != 0) {
-                            seg--;
-                        }
-                        jLabel1.setText("Tiempo: " + seg);
-                        Thread.sleep(1000);
+                while (true) {
+                    int seg = 51;
+                    
+                        seg--;
+                    
+                    
+                    jLabel1.setText("Tiempo: " + seg);
+                    try {
+                        Thread.sleep(998);
+
+                    } catch (InterruptedException ex) {
+
                     }
-
-                } catch (InterruptedException ex) {
-
                 }
             }
         });
         t1.start();
-
-        GeneradorCuestionario generador = new GeneradorCuestionario();
-
-        JLabel l1 = new JLabel();
-
-        ArrayList<JRadioButton> radios = new ArrayList<JRadioButton>();
-
-        for (Pregunta p : generador.getCuestionario().getPreguntas()) {
-
-            System.out.println(p.getTitulo());
-            l1.setText(p.getTitulo());
-            jPanel1.add(l1);
-
-            ButtonGroup grupo = new ButtonGroup();
-
-            for (Opcion o : p.getOpciones()) {
-                System.out.println(o.getTitulo() + " " + o.isCorrecta());
-                JRadioButton r = new JRadioButton();
-                r.setText(o.getTitulo());
-                grupo.add(r);
-                jPanel1.add(r);
-            }
-
-            boton = new JButton("checar respuesta");
-            jPanel1.add(boton);
-        }
-        boton.addActionListener(evento -> {
-            JOptionPane.showConfirmDialog(this, "Correcto!!");
-        });
 
     }
 

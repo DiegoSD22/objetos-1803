@@ -6,10 +6,15 @@
 
 package Vista;
 
-import Genericos.Opcion;
-import Genericos.Pregunta;
+
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import Modelo.Opcion;
+import Modelo.PersistenciaPregunta;
+import Modelo.Pregunta;
 
 /**
  *
@@ -20,6 +25,8 @@ public class FormularioPregunta extends javax.swing.JFrame {
     /** Creates new form FormularioPregunta */
     public FormularioPregunta() {
         initComponents();
+        
+        setLocationRelativeTo(this);
     }
 
     /** This method is called from within the constructor to
@@ -49,6 +56,9 @@ public class FormularioPregunta extends javax.swing.JFrame {
         jTextIncorrecta3 = new javax.swing.JTextArea();
         jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
+        jScrollPane11 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -165,15 +175,42 @@ public class FormularioPregunta extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Nueva Pregunta", jPanel2);
 
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null},
+                {null, null, null, null, null}
+            },
+            new String [] {
+                "titulo de la pregunta", "Opcion 1", "Opcion 2", "Opcion 3", "Opcion 4"
+            }
+        ));
+        jScrollPane11.setViewportView(jTable1);
+
+        jButton3.setText("Mostrar Preguntas");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 571, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 573, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 457, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton3)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane11, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(184, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Buscar Preguntas", jPanel3);
@@ -182,7 +219,7 @@ public class FormularioPregunta extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 571, Short.MAX_VALUE)
+            .addGap(0, 573, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,7 +234,7 @@ public class FormularioPregunta extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 571, Short.MAX_VALUE)
+            .addGap(0, 573, Short.MAX_VALUE)
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,7 +256,7 @@ public class FormularioPregunta extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 576, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -228,8 +265,7 @@ public class FormularioPregunta extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jTabbedPane1)
-                .addGap(0, 0, 0))
+                .addComponent(jTabbedPane1))
         );
 
         pack();
@@ -249,23 +285,58 @@ public class FormularioPregunta extends javax.swing.JFrame {
         Opcion o2=new Opcion(op2, false);
         Opcion o3=new Opcion(op3, false);
         Opcion o4=new Opcion(op4, false);
+        ArrayList opciones=new ArrayList<>();
+        opciones.add(o1);
+        opciones.add(o2);
+        opciones.add(o3);
+        opciones.add(o4);
         
         //Las agregamos a un ArrayList y a la pregunta
-        Pregunta p=new Pregunta(pregunta, Arrays.asList(o1, o2, o3, o4));
+        Pregunta p=new Pregunta(pregunta, opciones );
         try{
             //Ahora si guardamos la pregunta
-           // PersistenciaPregunta.guardar(p);
+            PersistenciaPregunta.guardar(p);
             jTextCorrecta.setText(null);
             jTextIncorrecta1.setText(null);
             jTextIncorrecta2.setText(null);
             jTextIncorrecta3.setText(null);
             jTextPregunta.setText(null);
+            JOptionPane.showConfirmDialog(this, "pregunta guardarda");
             
         }catch(Exception ex){
             JOptionPane.showConfirmDialog(this, ex.getMessage());
         }
         
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        try {
+            // TODO add your handling code here:
+
+            jTable1.setModel(new javax.swing.table.DefaultTableModel(
+                new Object [PersistenciaPregunta.leer().size()][4],
+                new String [] {
+                    "titulo de la pregunta", "Opcion 1", "Opcion 2", "Opcion 3", "Opcion 4"
+                }
+            ));
+
+            //Las depositamos
+            int i=0;
+            for(Pregunta p: PersistenciaPregunta.leer()){
+
+                jTable1.setValueAt(p.getTitulo(), i, 0);
+                jTable1.setValueAt(p.getOpciones().get(0).getTitulo(), i, 1);
+                jTable1.setValueAt(p.getOpciones().get(1).getTitulo(), i, 2);
+                jTable1.setValueAt(p.getOpciones().get(2).getTitulo(), i, 3);
+                jTable1.setValueAt(p.getOpciones().get(3).getTitulo(), i, 4);
+                i++;
+            }
+
+        } catch (Exception ex) {
+            Logger.getLogger(FormularioPregunta.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -304,6 +375,7 @@ public class FormularioPregunta extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -314,11 +386,13 @@ public class FormularioPregunta extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane10;
+    private javax.swing.JScrollPane jScrollPane11;
     private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JScrollPane jScrollPane7;
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTextArea jTextCorrecta;
     private javax.swing.JTextArea jTextIncorrecta1;
     private javax.swing.JTextArea jTextIncorrecta2;

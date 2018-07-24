@@ -3,15 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Genericos;
+package Modelo;
+
+import java.io.Serializable;
 
 /**
  *
- * @author T-101
+ * @author juan_
  */
-public class Opcion {
+public class Opcion implements Serializable{
     private String titulo;
     private boolean correcta;
+
+    public Opcion(String titulo, boolean correcta) {
+        this.titulo = titulo;
+        this.correcta = correcta;
+    }
+
+    public Opcion() {
+    }
 
     public String getTitulo() {
         return titulo;
@@ -28,10 +38,4 @@ public class Opcion {
     public void setCorrecta(boolean correcta) {
         this.correcta = correcta;
     }
-
-    public Opcion(String titulo, boolean correcta) {
-        this.titulo = titulo;
-        this.correcta = correcta;
-    }
-    
 }

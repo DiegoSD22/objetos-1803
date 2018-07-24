@@ -6,6 +6,11 @@
 
 package Vista;
 
+import Genericos.Opcion;
+import Genericos.Pregunta;
+import java.util.Arrays;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author T-101
@@ -31,17 +36,17 @@ public class FormularioPregunta extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         jScrollPane6 = new javax.swing.JScrollPane();
-        jTextArea6 = new javax.swing.JTextArea();
+        jTextPregunta = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         jScrollPane7 = new javax.swing.JScrollPane();
-        jTextArea7 = new javax.swing.JTextArea();
+        jTextCorrecta = new javax.swing.JTextArea();
         jLabel7 = new javax.swing.JLabel();
         jScrollPane8 = new javax.swing.JScrollPane();
-        jTextArea8 = new javax.swing.JTextArea();
+        jTextIncorrecta1 = new javax.swing.JTextArea();
         jScrollPane9 = new javax.swing.JScrollPane();
-        jTextArea9 = new javax.swing.JTextArea();
+        jTextIncorrecta2 = new javax.swing.JTextArea();
         jScrollPane10 = new javax.swing.JScrollPane();
-        jTextArea10 = new javax.swing.JTextArea();
+        jTextIncorrecta3 = new javax.swing.JTextArea();
         jButton2 = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -61,38 +66,43 @@ public class FormularioPregunta extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(0, 102, 102));
         jLabel5.setText("Titulo de la pregunta:");
 
-        jTextArea6.setColumns(20);
-        jTextArea6.setRows(5);
-        jScrollPane6.setViewportView(jTextArea6);
+        jTextPregunta.setColumns(20);
+        jTextPregunta.setRows(5);
+        jScrollPane6.setViewportView(jTextPregunta);
 
         jLabel6.setFont(new java.awt.Font("Minion Pro Med", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 102, 102));
         jLabel6.setText("Opción correcta:");
 
-        jTextArea7.setColumns(8);
-        jTextArea7.setRows(2);
-        jScrollPane7.setViewportView(jTextArea7);
+        jTextCorrecta.setColumns(8);
+        jTextCorrecta.setRows(2);
+        jScrollPane7.setViewportView(jTextCorrecta);
 
         jLabel7.setFont(new java.awt.Font("Minion Pro Med", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 102, 102));
         jLabel7.setText("Opciones incorrectas:");
 
-        jTextArea8.setColumns(8);
-        jTextArea8.setRows(2);
-        jScrollPane8.setViewportView(jTextArea8);
+        jTextIncorrecta1.setColumns(8);
+        jTextIncorrecta1.setRows(2);
+        jScrollPane8.setViewportView(jTextIncorrecta1);
 
-        jTextArea9.setColumns(8);
-        jTextArea9.setRows(2);
-        jScrollPane9.setViewportView(jTextArea9);
+        jTextIncorrecta2.setColumns(8);
+        jTextIncorrecta2.setRows(2);
+        jScrollPane9.setViewportView(jTextIncorrecta2);
 
-        jTextArea10.setColumns(8);
-        jTextArea10.setRows(2);
-        jScrollPane10.setViewportView(jTextArea10);
+        jTextIncorrecta3.setColumns(8);
+        jTextIncorrecta3.setRows(2);
+        jScrollPane10.setViewportView(jTextIncorrecta3);
 
         jButton2.setBackground(new java.awt.Color(0, 0, 0));
         jButton2.setFont(new java.awt.Font("Minion Pro Med", 0, 14)); // NOI18N
         jButton2.setForeground(new java.awt.Color(0, 102, 102));
         jButton2.setText("Guardar Pregunta");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -225,6 +235,38 @@ public class FormularioPregunta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        //Pedimos a los campos los nombres para ver las preguntas
+        String pregunta=jTextPregunta.getText();
+        String op1=jTextCorrecta.getText();
+        String op2=jTextIncorrecta1.getText();
+        String op3=jTextIncorrecta2.getText();
+        String op4=jTextIncorrecta3.getText();
+        
+        //Construimos cafa opcion
+        Opcion o1=new Opcion(op1, true);
+        Opcion o2=new Opcion(op2, false);
+        Opcion o3=new Opcion(op3, false);
+        Opcion o4=new Opcion(op4, false);
+        
+        //Las agregamos a un ArrayList y a la pregunta
+        Pregunta p=new Pregunta(pregunta, Arrays.asList(o1, o2, o3, o4));
+        try{
+            //Ahora si guardamos la pregunta
+           // PersistenciaPregunta.guardar(p);
+            jTextCorrecta.setText(null);
+            jTextIncorrecta1.setText(null);
+            jTextIncorrecta2.setText(null);
+            jTextIncorrecta3.setText(null);
+            jTextPregunta.setText(null);
+            
+        }catch(Exception ex){
+            JOptionPane.showConfirmDialog(this, ex.getMessage());
+        }
+        
+    }//GEN-LAST:event_jButton2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -277,11 +319,11 @@ public class FormularioPregunta extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane8;
     private javax.swing.JScrollPane jScrollPane9;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextArea jTextArea10;
-    private javax.swing.JTextArea jTextArea6;
-    private javax.swing.JTextArea jTextArea7;
-    private javax.swing.JTextArea jTextArea8;
-    private javax.swing.JTextArea jTextArea9;
+    private javax.swing.JTextArea jTextCorrecta;
+    private javax.swing.JTextArea jTextIncorrecta1;
+    private javax.swing.JTextArea jTextIncorrecta2;
+    private javax.swing.JTextArea jTextIncorrecta3;
+    private javax.swing.JTextArea jTextPregunta;
     // End of variables declaration//GEN-END:variables
 
 }

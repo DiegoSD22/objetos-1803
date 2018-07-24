@@ -29,5 +29,11 @@ public class Pregunta {
     public void setOpciones(ArrayList <Opcion> opciones) {
         this.opciones = opciones;
     }
+
+    public Pregunta(String titulo, ArrayList<Opcion> opciones) {
+        this.titulo = titulo;
+        this.opciones = opciones;
+    }
+    
     
 }

@@ -28,4 +28,10 @@ public class Opcion {
     public void setCorrecta(boolean correcta) {
         this.correcta = correcta;
     }
+
+    public Opcion(String titulo, boolean correcta) {
+        this.titulo = titulo;
+        this.correcta = correcta;
+    }
+    
 }

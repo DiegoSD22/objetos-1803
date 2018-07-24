@@ -6,7 +6,6 @@
 package Vista;
 
 import Genericos.GeneradorCuestionario;
-import Genericos.GeneradorCuestionario;
 import Genericos.Opcion;
 import Genericos.Opcion;
 import Genericos.Pregunta;
@@ -29,58 +28,58 @@ public class VentanaCuestionario extends javax.swing.JFrame {
      * Creates new form VentanaCuestionario
      */
     public VentanaCuestionario() {
+        setAlwaysOnTop(true);
         initComponents();
+        Thread t1 = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
 
-        Thread t1= new Thread();
-        public void run(){
-        try {//si ocurre un error al dormir el proceso(sleep(999))
-            int nuSeg = 50;//El Contador de segundos
-            for (;;) {//inicio del for infinito          
-                if (nuSeg != 0) {//si no es el ultimo segundo
-                    nuSeg--;  //decremento el numero de segundos                                  
+                    while (true) {
+                        int seg = 50;
+                        if (seg != 0) {
+                            seg--;
+                        }
+                        jLabel1.setText("Tiempo: " + seg);
+                        Thread.sleep(1000);
+                    }
+
+                } catch (InterruptedException ex) {
+
                 }
             }
-        
-        jLabel1.setText("Tiempo: " + nuSeg);//Muestro en pantalla el temporizador
-        Thread.sleep(998);//Duermo el hilo durante 999 milisegundos(casi un segundo, quintandole el tiempo de proceso)
-    
-        }catch (InterruptedException ex) {
-             
-        }//Fin try               
- 
-        }
+        });
+        t1.start();
 
-        
-        GeneradorCuestionario generador=new GeneradorCuestionario();
-       
-        JLabel l1=new JLabel();
-        
-        ArrayList<JRadioButton> radios=new ArrayList<JRadioButton>();
-       
-       for(Pregunta p:generador.getCuestionario().getPreguntas()){
-           
-          System.out.println(p.getTitulo());
-          l1.setText(p.getTitulo());
-          jPanel1.add(l1);
-          
-          ButtonGroup grupo=new ButtonGroup();
-           
-           for(Opcion o:p.getOpciones()){
-              System.out.println(o.getTitulo()+" "+o.isCorrecta());
-              JRadioButton r=new JRadioButton();
-              r.setText(o.getTitulo());
-              grupo.add(r);
-              jPanel1.add(r);
-           }
-           
-           boton=new JButton("checar respuesta");
-           jPanel1.add(boton);
-       }
-       boton.addActionListener(evento->{
-           JOptionPane.showConfirmDialog(this, "Correcto!!");
-       });
-        
-        
+        GeneradorCuestionario generador = new GeneradorCuestionario();
+
+        JLabel l1 = new JLabel();
+
+        ArrayList<JRadioButton> radios = new ArrayList<JRadioButton>();
+
+        for (Pregunta p : generador.getCuestionario().getPreguntas()) {
+
+            System.out.println(p.getTitulo());
+            l1.setText(p.getTitulo());
+            jPanel1.add(l1);
+
+            ButtonGroup grupo = new ButtonGroup();
+
+            for (Opcion o : p.getOpciones()) {
+                System.out.println(o.getTitulo() + " " + o.isCorrecta());
+                JRadioButton r = new JRadioButton();
+                r.setText(o.getTitulo());
+                grupo.add(r);
+                jPanel1.add(r);
+            }
+
+            boton = new JButton("checar respuesta");
+            jPanel1.add(boton);
+        }
+        boton.addActionListener(evento -> {
+            JOptionPane.showConfirmDialog(this, "Correcto!!");
+        });
+
     }
 
     /**
@@ -107,10 +106,10 @@ public class VentanaCuestionario extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(248, 248, 248)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(255, Short.MAX_VALUE)
                 .addComponent(jLabel1)
-                .addContainerGap(255, Short.MAX_VALUE))
+                .addGap(248, 248, 248))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,28 +136,24 @@ public class VentanaCuestionario extends javax.swing.JFrame {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
-                
 
-}
+                }
             }
         } catch (ClassNotFoundException ex) {
             java.util.logging.Logger.getLogger(VentanaCuestionario.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (InstantiationException ex) {
+        } catch (InstantiationException ex) {
             java.util.logging.Logger.getLogger(VentanaCuestionario.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (IllegalAccessException ex) {
+        } catch (IllegalAccessException ex) {
             java.util.logging.Logger.getLogger(VentanaCuestionario.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 
-} catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(VentanaCuestionario.class
-.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
 

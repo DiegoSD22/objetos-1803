@@ -49,21 +49,21 @@ public class PersistenciaPregunta {
      return preguntas;
     }
     
-    public static ArrayList<Opcion> opcionesAleatorias(ArrayList<Opcion>){
+    public static ArrayList<Opcion> opcionesAleatorias(ArrayList<Opcion> opciones){
         ArrayList<Opcion> opcionesAleatorios=new ArrayList<>();
         
         
-        Set<Integer> generado = new LinkedHashSet<>();
+        Set<Integer> enteros = new LinkedHashSet<>();
         
-        while(generado.size()<4){
+        while(enteros.size()<4){
             Random ram=new Random();
-        Integer proximo=ram.nextInt(4);
-        generado.add(proximo);
+        int valor=ram.nextInt(4);
+        enteros.add(valor);
     }
-        int indice=0;
-        for(Integer i: generado){
+        
+        for(Integer i: enteros){
             
-            opcionesAleatorios.add(opciones.get(entero));
+            opcionesAleatorios.add(opciones.get(i));
            
         }
         return opcionesAleatorios;

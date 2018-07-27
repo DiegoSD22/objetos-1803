@@ -11,6 +11,9 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.LinkedHashSet;
+import java.util.Random;
+import java.util.Set;
 
 /**
  *
@@ -44,5 +47,25 @@ public class PersistenciaPregunta {
         ObjectInputStream ois= new ObjectInputStream(fis);
      ArrayList<Pregunta> preguntas= (ArrayList<Pregunta>) ois.readObject();
      return preguntas;
+    }
+    
+    public static ArrayList<Opcion> opcionesAleatorias(ArrayList<Opcion>){
+        ArrayList<Opcion> opcionesAleatorios=new ArrayList<>();
+        
+        
+        Set<Integer> generado = new LinkedHashSet<>();
+        
+        while(generado.size()<4){
+            Random ram=new Random();
+        Integer proximo=ram.nextInt(4);
+        generado.add(proximo);
+    }
+        int indice=0;
+        for(Integer i: generado){
+            
+            opcionesAleatorios.add(opciones.get(entero));
+           
+        }
+        return opcionesAleatorios;
     }
 }

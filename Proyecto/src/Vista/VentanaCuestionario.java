@@ -25,6 +25,8 @@ public class VentanaCuestionario extends javax.swing.JFrame {
     int numero = 0;
     int seg = 31;
     JButton boton;
+    int correcta=0;
+    int resultado=0;
 
     /**
      * Creates new form VentanaCuestionario
@@ -169,10 +171,16 @@ public class VentanaCuestionario extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        buttonGroup1.clearSelection();
         mostrarPregunta(numero++);
-        temporizador();
+        seg=30;
         jLabel2.setText(numero + " de 8");
-        
+        if(rb1.isSelected()) correcta++;
+        if(numero==8){
+            resultado=correcta/8;
+            dispose();
+            JOptionPane.showMessageDialog(null, "Resultado: "+resultado);
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

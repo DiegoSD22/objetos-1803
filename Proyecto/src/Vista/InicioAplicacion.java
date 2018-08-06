@@ -83,7 +83,7 @@ public class InicioAplicacion extends javax.swing.JFrame {
         getContentPane().add(jButton2);
         jButton2.setBounds(240, 260, 110, 23);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\SR116\\Documents\\NetBeansProjects\\objetos-1803\\Proyecto\\src\\Vista\\plantilla.jpg")); // NOI18N
+        jLabel3.setIcon(new javax.swing.ImageIcon("C:\\Users\\T105\\Documents\\NetBeansProjects\\objetos-1803\\Proyecto\\src\\Vista\\plantilla.jpg")); // NOI18N
         jLabel3.setText("jLabel3");
         getContentPane().add(jLabel3);
         jLabel3.setBounds(0, 0, 600, 440);

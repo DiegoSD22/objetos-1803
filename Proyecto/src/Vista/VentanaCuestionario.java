@@ -8,6 +8,8 @@ package Vista;
 import Modelo.Opcion;
 import Modelo.PersistenciaPregunta;
 import Modelo.Pregunta;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.ArrayList;
@@ -24,9 +26,9 @@ public class VentanaCuestionario extends javax.swing.JFrame {
 
     int numero = 0;
     int seg = 31;
-    JButton boton;
-    int correcta=0;
-    int resultado=0;
+    int correcta = 0;
+    int numPreguntas = 1;
+    String respuesta;
 
     /**
      * Creates new form VentanaCuestionario
@@ -34,41 +36,90 @@ public class VentanaCuestionario extends javax.swing.JFrame {
     public VentanaCuestionario() {
         setAlwaysOnTop(true);
         initComponents();
+        setSize(375, 459);
         setLocationRelativeTo(this);
-        setSize(350, 300);
-        temporizador();
         mostrarPregunta(numero++);
 
-    }
-    
-    public void temporizador(){
         Thread t1 = new Thread(new Runnable() {
 
             public void run() {
-                
+
                 while (true) {
                     seg--;
-                    
+
                     try {
                         Thread.sleep(1000);
                         etiquetaTiempo.setText("Tiempo: " + seg);
-                        if(seg==0){
+                        if (seg == 0) {
                             mostrarPregunta(numero++);
+                            numPreguntas++;
                             jLabel2.setText(numero + " de 8");
-                            seg=31;
+                            
+                            if (numPreguntas > 8) {
+                                JOptionPane.showMessageDialog(null, "Resultado: " + correcta);
+                            }
                         }
 
-                    } catch (InterruptedException ex) {
+                    } catch (Exception ex) {
 
                     }
                 }
             }
         });
         t1.start();
+
         
+        rb1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String texto = rb1.getText();
+                if (rb1.isSelected()) {
+                    texto = "" + texto;
+                    jLCorrecta.setText(texto);
+                }
+
+            }
+        });
+
+        rb2.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String texto = rb2.getText();
+                if (rb2.isSelected()) {
+                    texto = "" + texto;
+                    jLCorrecta.setText(texto);
+                }
+
+            }
+        });
+
+        rb3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String texto = rb3.getText();
+                if (rb3.isSelected()) {
+                    texto = "" + texto;
+                    jLCorrecta.setText(texto);
+                }
+
+            }
+        });
+
+        rb4.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent ae) {
+                String texto = rb4.getText();
+                if (rb4.isSelected()) {
+                    texto = "" + texto;
+                    jLCorrecta.setText(texto);
+                }
+            }
+        });
+
     }
 
     public void mostrarPregunta(int numero) {
+        seg = 30;
         try {
             //Primero sacamosla pregunta del numero dado
             ArrayList<Pregunta> preguntas = PersistenciaPregunta.leer();
@@ -78,6 +129,8 @@ public class VentanaCuestionario extends javax.swing.JFrame {
             etiquetaPregunta.setText(p.getTitulo());
             //Ahora las opciones
             ArrayList<Opcion> opciones = p.getOpciones();
+            respuesta = opciones.get(0).getTitulo();
+            JLResultado.setText(respuesta);
             //Aplicamos el algoritmo
             opciones = PersistenciaPregunta.opcionesAleatorias(opciones);
             rb1.setText(opciones.get(0).getTitulo());
@@ -99,44 +152,52 @@ public class VentanaCuestionario extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
-        jPanel1 = new javax.swing.JPanel();
+        etiquetaTiempo = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         etiquetaPregunta = new javax.swing.JLabel();
         rb1 = new javax.swing.JRadioButton();
         rb2 = new javax.swing.JRadioButton();
         rb3 = new javax.swing.JRadioButton();
         rb4 = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
-        etiquetaTiempo = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        jLCorrecta = new javax.swing.JLabel();
+        JLResultado = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(136, 190, 191));
-        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.Y_AXIS));
+        etiquetaTiempo.setText("Tiemp: 30");
+        getContentPane().add(etiquetaTiempo);
+        etiquetaTiempo.setBounds(80, 40, 120, 14);
 
         jLabel2.setText("1 de 8");
-        jPanel1.add(jLabel2);
-        jPanel1.add(jLabel3);
+        getContentPane().add(jLabel2);
+        jLabel2.setBounds(160, 120, 60, 14);
 
         etiquetaPregunta.setText("Aqui va a ir la pregunta");
-        jPanel1.add(etiquetaPregunta);
+        getContentPane().add(etiquetaPregunta);
+        etiquetaPregunta.setBounds(80, 140, 270, 20);
 
         buttonGroup1.add(rb1);
         rb1.setText("jRadioButton1");
-        jPanel1.add(rb1);
+        getContentPane().add(rb1);
+        rb1.setBounds(140, 170, 190, 23);
 
         buttonGroup1.add(rb2);
         rb2.setText("jRadioButton2");
-        jPanel1.add(rb2);
+        getContentPane().add(rb2);
+        rb2.setBounds(140, 190, 190, 23);
 
         buttonGroup1.add(rb3);
         rb3.setText("jRadioButton3");
-        jPanel1.add(rb3);
+        getContentPane().add(rb3);
+        rb3.setBounds(140, 220, 190, 23);
 
         buttonGroup1.add(rb4);
         rb4.setText("jRadioButton4");
-        jPanel1.add(rb4);
+        getContentPane().add(rb4);
+        rb4.setBounds(140, 240, 190, 23);
 
         jButton1.setText(">>");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -144,43 +205,38 @@ public class VentanaCuestionario extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1);
+        getContentPane().add(jButton1);
+        jButton1.setBounds(150, 270, 49, 23);
 
-        etiquetaTiempo.setText("jLabel1");
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\SR116\\Documents\\NetBeansProjects\\objetos-1803\\Proyecto\\src\\Vista\\pln.jpg")); // NOI18N
+        getContentPane().add(jLabel1);
+        jLabel1.setBounds(0, 0, 370, 450);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(255, Short.MAX_VALUE)
-                .addComponent(etiquetaTiempo)
-                .addGap(248, 248, 248))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(etiquetaTiempo)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 324, Short.MAX_VALUE))
-        );
+        jLCorrecta.setText("jLabel3");
+        getContentPane().add(jLCorrecta);
+        jLCorrecta.setBounds(50, 340, 34, 14);
+
+        JLResultado.setText("jLabel3");
+        getContentPane().add(JLResultado);
+        JLResultado.setBounds(250, 330, 34, 14);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        buttonGroup1.clearSelection();
-        mostrarPregunta(numero++);
-        seg=30;
-        jLabel2.setText(numero + " de 8");
-        if(rb1.isSelected()) correcta++;
-        if(numero==8){
-            resultado=correcta/8;
-            dispose();
-            JOptionPane.showMessageDialog(null, "Resultado: "+resultado);
+        numPreguntas++;
+        jLabel2.setText(numPreguntas + " de 8");
+        if (jLCorrecta.getText().equals(JLResultado.getText())) {
+            correcta++;
         }
+
+        if (numPreguntas > 8) {
+            dispose();
+            JOptionPane.showMessageDialog(null, "Resultado: " + correcta);
+        }
+        mostrarPregunta(numero++);
+        buttonGroup1.clearSelection();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -227,13 +283,14 @@ public class VentanaCuestionario extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel JLResultado;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JLabel etiquetaPregunta;
     private javax.swing.JLabel etiquetaTiempo;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLCorrecta;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JRadioButton rb1;
     private javax.swing.JRadioButton rb2;
     private javax.swing.JRadioButton rb3;

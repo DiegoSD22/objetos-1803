@@ -9,11 +9,9 @@ package eteFinal;
  *
  * @author SR116
  */
-public class Cuadrado implements Geometria {
+public class Cuadrado extends Figuras {
 
     private float lado;
-    private float areaCu;
-    float perimetroCu;
 
     public float getLado() {
         return lado;
@@ -23,29 +21,24 @@ public class Cuadrado implements Geometria {
         this.lado = lado;
     }
 
-    public float getAreaCu() {
-        return areaCu;
+    public Cuadrado() {
     }
 
     public Cuadrado(float lado) {
         this.lado = lado;
     }
 
-    public float getPerimetroCu() {
-        return perimetroCu;
-    }
-
-    public void area() {
-        areaCu = lado * lado;
-    }
     
-    public void perimetro(){
-        perimetroCu=lado*4;
+    public void Perimetro() {
+        lado = getLado();
+        System.out.println("El perimetro del cuadrado es: " + 4 * lado);
     }
 
-    @Override
-    public String toString() {
-        return "Cuadrado{" + "areaCu=" + areaCu + ", perimetroCu=" + perimetroCu + '}';
+    
+    public void Area() {
+        lado = getLado();
+        System.out.println("El Area del cuadrado es: " + lado * lado);
     }
 
 }
+

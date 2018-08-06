@@ -9,20 +9,25 @@ package eteFinal;
  *
  * @author SR116
  */
-public class Triangulo implements Geometria {
+public class Triangulo extends Figuras {
 
+    float lado;
+    float altura;
 
-    private float base;
-    private float altura;
-    private float areaT;
-    private float perimetroT;
-
-    public float getBase() {
-        return base;
+    public Triangulo(float lado, float altura) {
+        this.lado = lado;
+        this.altura = altura;
     }
 
-    public void setBase(float base) {
-        this.base = base;
+    public Triangulo() {
+    }
+
+    public float getLado() {
+        return lado;
+    }
+
+    public void setLado(float lado) {
+        this.lado = lado;
     }
 
     public float getAltura() {
@@ -33,31 +38,17 @@ public class Triangulo implements Geometria {
         this.altura = altura;
     }
 
-    public float getAreaT() {
-        return areaT;
-    }
-
-    public float getPerimetroT() {
-        return perimetroT;
-    }
-
-    public Triangulo(float base, float altura) {
-        this.base = base;
-        this.altura = altura;
-    }
-
-    public void area() {
-        areaT = (base * altura) / 2;
-
-    }
     
-    public void perimetro(){
-        perimetroT=(altura*2)+base;
+    public void Perimetro() {
+        lado = getLado();
+        System.out.println("El perimetro del triangulo es: " + 3 * lado);
     }
 
-    @Override
-    public String toString() {
-        return "Triangulo{" + "areaT=" + areaT + ", perimetroT=" + perimetroT + '}';
+    
+    public void Area() {
+        lado = getLado();
+        altura = getAltura();
+        System.out.println("El Area del triangulo es: " + lado * altura / 2);
     }
 
 }

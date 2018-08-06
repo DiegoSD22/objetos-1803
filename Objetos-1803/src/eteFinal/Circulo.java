@@ -9,10 +9,9 @@ package eteFinal;
  *
  * @author SR116
  */
-public class Circulo implements Geometria{
+public class Circulo extends Figuras {
+
     private float radio;
-    private float areaC;
-    private float perimetroC;
 
     public float getRadio() {
         return radio;
@@ -22,30 +21,23 @@ public class Circulo implements Geometria{
         this.radio = radio;
     }
 
-    public float getAreaC() {
-        return areaC;
+    public Circulo() {
     }
 
     public Circulo(float radio) {
         this.radio = radio;
     }
+
     
-    public float getPerimetroC() {
-        return perimetroC;
-    }
-    
-    public void area(){
-        areaC= (radio*radio)*3.1416f;
+    public void Perimetro() {
+        radio=getRadio();
+        System.out.println("El perimetro del circulo es: " + 3.1416 * 2 * radio);
     }
 
-    public void perimetro(){
-        perimetroC=(2*3.1416f)*radio;
-    }
-
-    @Override
-    public String toString() {
-        return "Circulo{" + "areaC=" + areaC + ", perimetroC=" + perimetroC + '}';
-    }
     
-    
+    public void Area() {
+        radio = getRadio();
+       
+        System.out.println("El Area del circulo es: " + 3.1416 * radio * radio);
+    }
 }

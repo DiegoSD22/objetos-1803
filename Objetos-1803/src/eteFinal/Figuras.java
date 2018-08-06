@@ -9,48 +9,22 @@ package eteFinal;
  *
  * @author SR116
  */
-public class Figuras {
-    private Cuadrado cuadrado;
-    private Circulo circulo;
-    private Triangulo triangulo;
+public abstract class Figuras {
 
-    public Cuadrado getCuadrado() {
-        return cuadrado;
+    private String Nombre;
+
+    public String getNombre() {
+        return Nombre;
     }
 
-    public void setCuadrado(Cuadrado cuadrado) {
-        this.cuadrado = cuadrado;
+    public void setNombre(String Nombre) {
+        this.Nombre = Nombre;
     }
 
-    public Circulo getCirculo() {
-        return circulo;
+    public void Perimetro() {
     }
 
-    public void setCirculo(Circulo circulo) {
-        this.circulo = circulo;
+    public void Area() {
     }
 
-    public Triangulo getTriangulo() {
-        return triangulo;
-    }
-
-    public void setTriangulo(Triangulo triangulo) {
-        this.triangulo = triangulo;
-    }
-
-    public Figuras() {
-    }
-
-    public Figuras(Cuadrado cuadrado, Circulo circulo, Triangulo triangulo) {
-        this.cuadrado = cuadrado;
-        this.circulo = circulo;
-        this.triangulo = triangulo;
-    }
-
-    @Override
-    public String toString() {
-        return "Figuras{" + "cuadrado=" + cuadrado + ", circulo=" + circulo + ", triangulo=" + triangulo + '}';
-    }
-    
-    
 }

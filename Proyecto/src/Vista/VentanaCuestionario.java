@@ -235,6 +235,7 @@ public class VentanaCuestionario extends javax.swing.JFrame {
         if (numPreguntas > 8) {
             dispose();
             JOptionPane.showMessageDialog(null, "Resultado: " + correcta);
+            System.exit(0);
         }
         mostrarPregunta(numero++);
         buttonGroup1.clearSelection();

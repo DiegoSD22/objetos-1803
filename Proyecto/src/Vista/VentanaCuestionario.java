@@ -29,6 +29,7 @@ public class VentanaCuestionario extends javax.swing.JFrame {
     int correcta = 0;
     int numPreguntas = 1;
     String respuesta;
+    
 
     /**
      * Creates new form VentanaCuestionario
@@ -208,7 +209,7 @@ public class VentanaCuestionario extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(150, 270, 49, 23);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\SR116\\Documents\\NetBeansProjects\\objetos-1803\\Proyecto\\src\\Vista\\pln.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\T-\\Documents\\NetBeansProjects\\objetos-1803\\Proyecto\\src\\Vista\\pln.jpg")); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 370, 450);
 
@@ -237,6 +238,7 @@ public class VentanaCuestionario extends javax.swing.JFrame {
         }
         mostrarPregunta(numero++);
         buttonGroup1.clearSelection();
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

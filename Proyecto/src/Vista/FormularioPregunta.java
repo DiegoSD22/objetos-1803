@@ -637,22 +637,23 @@ public class FormularioPregunta extends javax.swing.JFrame {
                 }
             ));
 
-            //Las depositamos
-            
-            int busqueda=Integer.parseInt(jTextBusP.getText());
-            for(Pregunta p: PersistenciaPregunta.leer()){
-
-                jTable1.setValueAt(p.getTitulo(), busqueda, 0);
-                jTable1.setValueAt(p.getOpciones().get(0).getTitulo(), busqueda, 1);
-                jTable1.setValueAt(p.getOpciones().get(1).getTitulo(), busqueda, 2);
-                jTable1.setValueAt(p.getOpciones().get(2).getTitulo(), busqueda, 3);
-                jTable1.setValueAt(p.getOpciones().get(3).getTitulo(), busqueda, 4);
-                
+            int i = 0;
+        int pregunta = Integer.parseInt(jTextBusP.getText());
+        
+            for (Pregunta p : PersistenciaPregunta.leer()) {
+                if (i == pregunta) {
+                    jTable1.setValueAt(p.getTitulo(), i, 0);
+                    jTable1.setValueAt(p.getOpciones().get(0).getTitulo(), i, 1);
+                    jTable1.setValueAt(p.getOpciones().get(1).getTitulo(), i, 2);
+                    jTable1.setValueAt(p.getOpciones().get(2).getTitulo(), i, 3);
+                    jTable1.setValueAt(p.getOpciones().get(3).getTitulo(), i, 4);
+                }
+                i++;
             }
-
         } catch (Exception ex) {
-            Logger.getLogger(FormularioPregunta.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showConfirmDialog(this, "No se encontro la pregunta: " );
         }
+        
     }//GEN-LAST:event_jBotonBusPActionPerformed
 
     /**

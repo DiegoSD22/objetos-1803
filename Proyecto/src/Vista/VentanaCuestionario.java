@@ -26,9 +26,10 @@ public class VentanaCuestionario extends javax.swing.JFrame {
 
     int numero = 0;
     int seg = 31;
-    int correcta = 0;
+    float correcta = 0;
     int numPreguntas = 1;
     String respuesta;
+    float promedio=0;
     
 
     /**
@@ -209,7 +210,7 @@ public class VentanaCuestionario extends javax.swing.JFrame {
         getContentPane().add(jButton1);
         jButton1.setBounds(150, 270, 49, 23);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon("C:\\Users\\T-\\Documents\\NetBeansProjects\\objetos-1803\\Proyecto\\src\\Vista\\pln.jpg")); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Vista/pln.jpg"))); // NOI18N
         getContentPane().add(jLabel1);
         jLabel1.setBounds(0, 0, 370, 450);
 
@@ -233,8 +234,9 @@ public class VentanaCuestionario extends javax.swing.JFrame {
         }
 
         if (numPreguntas > 8) {
+            promedio=(correcta*10)/8;
             dispose();
-            JOptionPane.showMessageDialog(null, "Resultado: " + correcta);
+            JOptionPane.showMessageDialog(null, "Resultado: " + correcta + " de 8" + "\n" + "Promedio: " + promedio);
             System.exit(0);
         }
         mostrarPregunta(numero++);
